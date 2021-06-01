@@ -2,6 +2,10 @@ import express from "express";
 import dotenv from "dotenv";
 import path from "path";
 
+import { showAll } from "./controllers/userController";
+
+var router = express.Router();
+
 dotenv.config();
 
 const app = express();
@@ -12,14 +16,6 @@ console.log(path.join(__dirname, "dist"));
 app.set("view engine", "ejs");
 
 app.get("/", (req, res) => {
-  let tagline: { msg: string } = {
-    msg: "No programming concept is complete without a cute animal mascot.",
-  };
-
-  res.render("pages/index", tagline);
-});
-
-app.get("/login", (req, res) => {
   let tagline: { msg: string; data: { name: string }[] } = {
     msg: "No programming concept is complete without a cute animal mascot.",
     data: [
@@ -32,7 +28,12 @@ app.get("/login", (req, res) => {
     ],
   };
 
-  res.render("pages/login", tagline);
+  let data = {
+    accounts: showAll(),
+    msg: "hi hello",
+  };
+
+  res.render("pages/login", data);
 });
 
 app.listen(PORT, () => {

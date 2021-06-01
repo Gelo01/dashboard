@@ -10,26 +10,14 @@
       <section>
         <div class="container">
           <div class="row">
-            <div class="col-6">
+            <div class="col-12">
               <h1>Login Page</h1>
               <p><%= msg %></p>
 
               <ul>
-                <% data.forEach(function(d) { %>
+                <% accounts.forEach(function(d) { %>
                 <li>
-                  <strong>Name: <%= d.name %></strong>
-                </li>
-                <% }); %>
-              </ul>
-            </div>
-            <div class="col-6">
-              <h1>Login Page</h1>
-              <p><%= msg %></p>
-
-              <ul>
-                <% data.forEach(function(d) { %>
-                <li>
-                  <strong>Name: <%= d.name %></strong>
+                  <strong>Name: <%= d.username %> / <%= d.email %></strong>
                 </li>
                 <% }); %>
               </ul>
