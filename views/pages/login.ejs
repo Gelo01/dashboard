@@ -5,16 +5,19 @@
   </head>
   <body>
     <%- include('../partials/header'); %>
-    <h1>Login Page</h1>
-    <p><%= msg %></p>
 
-    <ul>
-      <% data.forEach(function(d) { %>
-      <li>
-        <strong>Name: <%= d.name %></strong>
-      </li>
-      <% }); %>
-    </ul>
+    <main>
+      <h1>Login Page</h1>
+      <p><%= msg %></p>
+
+      <ul>
+        <% data.forEach(function(d) { %>
+        <li>
+          <strong>Name: <%= d.name %></strong>
+        </li>
+        <% }); %>
+      </ul>
+    </main>
 
     <%- include('../partials/footer'); %>
   </body>
