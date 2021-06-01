@@ -19,8 +19,16 @@ app.get("/", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  let tagline: { msg: string } = {
+  let tagline: { msg: string; data: { name: string }[] } = {
     msg: "No programming concept is complete without a cute animal mascot.",
+    data: [
+      {
+        name: "Test 1",
+      },
+      {
+        name: "Test 2",
+      },
+    ],
   };
 
   res.render("pages/login", tagline);
