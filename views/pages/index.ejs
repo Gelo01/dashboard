@@ -7,10 +7,91 @@
     <%- include('../partials/header'); %>
 
     <main>
-      <h1>Home Page</h1>
-      <p><%= msg %></p>
+      <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <form id="form-register">
+              <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+              <div class="form-floating">
+                <input
+                  type="username"
+                  class="form-control"
+                  placeholder="username"
+                  name="username"
+                />
+                <label for="floatingInput">Username</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="name@example.com"
+                  name="email"
+                />
+                <label for="floatingInput">Email address</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  name="password"
+                />
+                <label for="floatingPassword">Password</label>
+              </div>
+              <div class="form-floating">
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  name="cpassword"
+                />
+                <label for="floatingPassword">Confirm Password</label>
+              </div>
+
+              <button class="w-100 btn btn-lg btn-primary" type="submit">
+                Register
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
     </main>
 
     <%- include('../partials/footer'); %>
+    <script>
+      var formRegister = document.querySelector("#form-register");
+      // var data = new FormData(formRegister);
+
+      // console.log(data);
+
+      function submitHandler(event) {
+        event.preventDefault();
+
+        let data = {
+          username: formRegister.querySelector('input[name="username"]').value,
+          email: formRegister.querySelector('input[name="email"]').value,
+          password: formRegister.querySelector('input[name="password"]').value,
+          cpassword: formRegister.querySelector('input[name="cpassword"]')
+            .value,
+        };
+
+        fetch("http://localhost:5050/users", {
+          method: "post",
+          body: JSON.stringify(data),
+          headers: { "Content-type": "application/json; charset=UTF-8" },
+        })
+          .then(function (response) {
+            return response.json();
+          })
+          .then(function (data) {
+            console.log("Created User:", data);
+
+            alert("succes registration");
+          });
+      }
+
+      formRegister.addEventListener("submit", submitHandler);
+    </script>
   </body>
 </html>

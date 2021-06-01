@@ -67,7 +67,7 @@ const register = (
 
     Accounts.push(newAccount);
 
-    return true;
+    return newAccount;
   } else {
     return false;
   }
