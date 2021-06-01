@@ -7,16 +7,36 @@
     <%- include('../partials/header'); %>
 
     <main>
-      <h1>Login Page</h1>
-      <p><%= msg %></p>
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-6">
+              <h1>Login Page</h1>
+              <p><%= msg %></p>
 
-      <ul>
-        <% data.forEach(function(d) { %>
-        <li>
-          <strong>Name: <%= d.name %></strong>
-        </li>
-        <% }); %>
-      </ul>
+              <ul>
+                <% data.forEach(function(d) { %>
+                <li>
+                  <strong>Name: <%= d.name %></strong>
+                </li>
+                <% }); %>
+              </ul>
+            </div>
+            <div class="col-6">
+              <h1>Login Page</h1>
+              <p><%= msg %></p>
+
+              <ul>
+                <% data.forEach(function(d) { %>
+                <li>
+                  <strong>Name: <%= d.name %></strong>
+                </li>
+                <% }); %>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
 
     <%- include('../partials/footer'); %>
