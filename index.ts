@@ -25,6 +25,10 @@ app.get("/login", (req, res) => {
   res.render("pages/login");
 });
 
+app.get("/draganddrop", (req, res) => {
+  res.render("pages/draganddrop");
+});
+
 app.post("/users", (req, res) => {
   let username = req.body.username;
   let email = req.body.email;

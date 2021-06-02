@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head'); %>
+    <style>
+      .grid-stack {
+        background: #fafad2;
+      }
+
+      .grid-stack-item-content {
+        color: #2c3e50;
+        text-align: center;
+        background-color: #18bc9c;
+        border-radius: 24px;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('../partials/header'); %>
+
+    <main>
+      <section>
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h2>Items</h2>
+              <div id="gridbox1" class="grid-stack grid-stack-6"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <h2>Drag Here</h2>
+              <div id="gridbox2" class="grid-stack grid-stack-6"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <%- include('../partials/footer'); %>
+
+    <script type="text/javascript">
+      function addEvents(grid) {
+        let g = "grid";
+
+        grid.on("dragstart", function (event, el) {
+          let node = el.gridstackNode;
+          let x = el.getAttribute("gs-x"); // verify node (easiest) and attr are the same
+          let y = el.getAttribute("gs-y");
+          console.log(
+            g +
+              "dragstart " +
+              el.textContent +
+              " pos: (" +
+              node.x +
+              "," +
+              node.y +
+              ") = (" +
+              x +
+              "," +
+              y +
+              ")"
+          );
+        });
+
+        grid.on("drag", function (event, el) {
+          let node = el.gridstackNode;
+          let x = el.getAttribute("gs-x"); // verify node (easiest) and attr are the same
+          let y = el.getAttribute("gs-y");
+          // console.log(g + 'drag ' + el.textContent + ' pos: (' + node.x + ',' + node.y + ') = (' + x + ',' + y + ')');
+        });
+
+        grid.on("dragstop", function (event, el) {
+          let node = el.gridstackNode;
+          let x = el.getAttribute("gs-x"); // verify node (easiest) and attr are the same
+          let y = el.getAttribute("gs-y");
+          console.log(
+            g +
+              "dragstop " +
+              el.textContent +
+              " pos: (" +
+              node.x +
+              "," +
+              node.y +
+              ") = (" +
+              x +
+              "," +
+              y +
+              ")"
+          );
+        });
+
+        grid.on("dropped", function (event, previousWidget, newWidget) {
+          if (previousWidget) {
+            console.log(
+              g + "dropped - Removed widget from grid:",
+              previousWidget
+            );
+          }
+          if (newWidget) {
+            console.log(g + "dropped - Added widget in grid:", newWidget);
+          }
+        });
+      }
+      let options1 = {
+        column: 12,
+        row: 1, // don't collapse when empty
+        cellHeight: 200,
+        disableOneColumnMode: true,
+        float: false,
+        acceptWidgets: function (el) {
+          return false;
+        }, // function example, else can be simple: true | false | '.someClass' value
+      };
+
+      let options2 = {
+        column: 3,
+        row: 4, // don't collapse when empty
+        cellHeight: 200,
+        disableOneColumnMode: true,
+        float: false,
+        acceptWidgets: function (el) {
+          return true;
+        }, // function example, else can be simple: true | false | '.someClass' value
+      };
+
+      let gridbox1 = document.getElementById("gridbox1");
+      let gridbox2 = document.getElementById("gridbox2");
+
+      let grid1 = GridStack.init(options1, gridbox1);
+      let grid2 = GridStack.init(options2, gridbox2);
+
+      var content = `
+      <p>lorem</p>
+      <div style="display:flex;">
+ <h1>hi</h1>
+ <h2>hi</h2>
+    </div>
+      `;
+      var items = [
+        {
+          w: 3,
+          content: content,
+          noResize: true,
+        },
+        { w: 3, content: content, noResize: true },
+        { w: 3, content: content, noResize: true },
+        { w: 3, content: content, noResize: true },
+      ];
+
+      addEvents(grid1);
+      grid1.load(items);
+    </script>
+  </body>
+</html>
